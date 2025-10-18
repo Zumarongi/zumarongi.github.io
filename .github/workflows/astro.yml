@@ -11,10 +11,14 @@ permissions:
   pages: write                # 允许写入 GitHub Pages 部署内容
   id-token: write             # 允许使用 GitHub 的安全身份验证令牌（OIDC）
 
+defaults:
+  run:
+    working-directory: ./ignoramuz
+
 jobs:
   build:
-    name: 🏗️ Build Astro site
-    runs-on: ubuntu-latest    # 使用最新 Ubuntu 环境
+    name: Build Astro site
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
@@ -23,17 +27,15 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 24.2.0
           cache: npm
-
-      - name: Change directory
-        run: cd ignoramuz 
+          cache-dependency-path: ignoramuz/package-lock.json
 
       - name: Install dependencies
-        run: cd ignoramuz && npm ci
+        run: npm ci
 
       - name: Build project
-        run: cd ignoramuz && npm run build
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
