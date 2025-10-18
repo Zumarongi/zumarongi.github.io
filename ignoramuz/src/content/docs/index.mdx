@@ -1,10 +1,11 @@
 ---
-title: ""
+title: ''
 ---
 
-import TopicSection from "../../components/react/TopicSection";
+import TopicSections from "../components/react/TopicSections";
+import { topicsData } from "../../lib/getTopics.js";
 
-export const topicsData = [
+{/* export const topicsData = [
   {
     topic: { name: 'Language', link: '/topics/language' },
     articles: [
@@ -14,7 +15,6 @@ export const topicsData = [
         summary: 'How languages drift toward structure — experiments and thought exercises.',
         link: '/posts/chaos-evolution',
         tags: ['language', 'evolution'],
-        // cover: '/assets/covers/lang1.jpg'
       },
       {
         id: 'linguistic-entropy',
@@ -56,10 +56,8 @@ export const topicsData = [
       },
     ],
   },
-];
+]; */}
 
 ## 最新文章
 
-{topicsData.map((t) => (
-  <TopicSection client:visible topic={t.topic} articles={t.articles} />
-))}
+<TopicSections client:visible topics={topicsData} />
