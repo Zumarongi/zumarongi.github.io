@@ -20,15 +20,15 @@ export default defineConfig({
       ],
       sidebar: [
         {
-          label: "Guides",
+          label: "语言",
           // items: [
           // 	// Each item here is one entry in the navigation menu.
           // 	{ label: 'Example Guide', slug: 'guides/example' },
           // ],
-          autogenerate: { directory: "guides" },
+          autogenerate: { directory: "language" },
         },
         {
-          label: "Reference",
+          label: "参考",
           autogenerate: { directory: "reference" },
         },
       ],

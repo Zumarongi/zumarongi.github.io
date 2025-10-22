@@ -47,7 +47,7 @@ export const topicsData = (() => {
     const match = fullPath.match(/\/src\/content\/docs\/([^/]+)\/([^/]+)$/);
     if (!match) continue;
     const dirName = decodeURIComponent(match[1]);
-    const topicName = DirTopicMap[dirName] || dirName;
+    // const topicName = DirTopicMap[dirName] || dirName;
     const slugBase = match[2].replace(/\.(md|mdx)$/, '');
 
     const title = fm.title || fm.name || slugBase;
@@ -69,8 +69,8 @@ export const topicsData = (() => {
       cover,
     };
 
-    if (!topicsMap.has(topicName)) topicsMap.set(topicName, []);
-    topicsMap.get(topicName).push(article);
+    if (!topicsMap.has(dirName)) topicsMap.set(dirName, []);
+    topicsMap.get(dirName).push(article);
   }
 
   // Convert to array, sort each topic's articles by date desc, keep top N
@@ -86,7 +86,7 @@ export const topicsData = (() => {
     });
 
     return {
-      topic: { name, link: `/${encodeURIComponent(name)}` },
+      topic: { name: DirTopicMap[name], link: `/${encodeURIComponent(name)}` },
       articles: articles.slice(0, TOP_N_PER_TOPIC),
     };
   });
